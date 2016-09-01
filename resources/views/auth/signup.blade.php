@@ -5,6 +5,8 @@
 
 @section('content')
 
+    <h3>Sign up</h3>
+
     <div class="row">
         <div class="col-md-6">
             <form class="form-vertical" action="{{ route('auth.signup') }}" role="form" method="post">

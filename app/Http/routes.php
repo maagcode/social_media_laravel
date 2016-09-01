@@ -16,3 +16,7 @@ Route::get('/', 'HomeController@index')->name('social.home');
 // Authentication Routes
 Route::get('/signup', 'AuthController@getSignup')->name('auth.signup');
 Route::post('signup', 'AuthController@postSignup');
+
+// Sign in Routes
+Route::get('/signin', 'AuthController@getSignin')->name('auth.signin');
+Route::post('signin', 'AuthController@postSignin');

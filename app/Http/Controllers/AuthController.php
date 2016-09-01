@@ -31,4 +31,17 @@ class AuthController extends Controller
 
         return redirect()->route('social.home')->with('info', 'Account successfully created');
     }
+
+    public function getSignin()
+    {
+        return view('auth.signin');
+    }
+
+    public function postSignin(Request $reqquest)
+    {
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+    }
 }
