@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\User;
 
+use Auth;
+
 class AuthController extends Controller
 {
     public function getSignup()
@@ -43,5 +45,19 @@ class AuthController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
+
+        if (!Auth::attempt($request->only(['email', 'password']), $request->has('remember')))
+        {
+            return redirect()->back()->with('info', 'Could not sign in');
+        }
+
+        return redirect()->route('home')->with('info', 'Successfully Sign In!');
+    }
+
+    public function getLogout()
+    {
+        Auth::logout();
+
+        return redirect()->route('home');
     }
 }

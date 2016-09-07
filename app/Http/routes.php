@@ -13,10 +13,17 @@
 
 Route::get('/', 'HomeController@index')->name('social.home');
 
-// Authentication Routes
-Route::get('/signup', 'AuthController@getSignup')->name('auth.signup');
-Route::post('signup', 'AuthController@postSignup');
 
-// Sign in Routes
-Route::get('/signin', 'AuthController@getSignin')->name('auth.signin');
-Route::post('signin', 'AuthController@postSignin');
+Route::group(['middleware' => 'guest'], function ()
+{
+    // Authentication Routes
+    Route::get('/signup', 'AuthController@getSignup')->name('auth.signup');
+    Route::post('signup', 'AuthController@postSignup');
+
+    // Sign in Routes
+    Route::get('/signin', 'AuthController@getSignin')->name('auth.signin');
+    Route::post('signin', 'AuthController@postSignin');
+});
+
+// Logout Routes
+Route::get('/logout', 'AuthController@getLogout')->name('auth.logout');

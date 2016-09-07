@@ -12,7 +12,14 @@
     </div>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="{{ route('auth.signup') }}">Sign up</a></li>
+         @if (Auth::check())
+            <li>{{ Auth::user()->getNameOrUsername() }}</li>
+            <li>Update Profile</li>
+            <li><a href="{{ route('auth.logout') }}">Sign out</a></li>
+        @else
+            <li><a href="{{ route('auth.signup') }}">Sign up</a></li>
+            <li><a href="{{ route('auth.signin') }}">Sign in</a></li>
+        @endif
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
